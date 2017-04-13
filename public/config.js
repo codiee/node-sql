@@ -3,12 +3,14 @@ var mysql = require('mysql')
 var app = require('express');
 //You can configure any DB here.
 
+//local database config
 var db_config = {
-    host: 'us-cdbr-iron-east-03.cleardb.net',
-    user: 'b53e02615a7876',
-    password: '5b4624e8',
-    database: 'heroku_dffa9cad521a868'
-};
+   user: 'root',
+   password: 'root',
+   server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
+   database: 'myfirstdatabase',
+   port: 3306
+}
 
 var pool;
 
@@ -19,4 +21,3 @@ function handleDisconnect() {
 
 pool = handleDisconnect();
 module.exports.config = pool;
-

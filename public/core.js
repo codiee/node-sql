@@ -2,7 +2,7 @@
 var scotchTodo = angular.module('cartApp', [])
 
 //controller
-function mainController($scope, $http) {
+.controller('mainController', ['$scope', '$http' , function($scope, $http) {
     //hide edit form
     $scope.enableEditForm = false;
     $scope.user = {
@@ -11,29 +11,41 @@ function mainController($scope, $http) {
       City: ""
     };
 
-    $scope.update = {
-      name: "",
-      age: "",
-      city: ""
-    };
-
     $scope.cancelUpdate = function() {
-        $scope.enableEditForm = false;
+        //$scope.enableEditForm = false;
+        $scope.user = {
+          name: "",
+          age: "",
+          city: ""
+        };
     };
 
     // when landing on the page, get all todos and show them
     $scope.getList = function() {
       $http.get('/api/getUsers')
-          .success(function(data) {
-              $scope.users = data;
-          })
-          .error(function(data) {
-          });
+        .then(function(response) {
+          $scope.users = response.data;
+         })
+    };
+
+    $scope.emptyInput = function() {
+      //to reset validation errors
+      $scope.userForm.user_name.$setUntouched();
+      $scope.userForm.user_name.$setPristine();
+      $scope.userForm.user_age.$setUntouched();
+      $scope.userForm.user_age.$setPristine();
+      $scope.userForm.user_city.$setUntouched();
+      $scope.userForm.user_city.$setPristine();
+      $scope.enableEditForm = false;
+      $scope.user = {
+        name: "",
+        age: "",
+        city: ""
+      };
     };
 
     //calling on page load
     $scope.getList();
-
 
     // when submitting the add form, send the text to the node API
     $scope.createUser = function(data) {
@@ -43,22 +55,19 @@ function mainController($scope, $http) {
           city: data.city
         };
         $http.post('/api/addUser', userInfo)
-            .success(function(data) {
+            .then(function(data) {
                 $scope.getList();
                 $scope.user = {};
             })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
     };
 
     //autofill input on edit
     $scope.enableUpdateForm = function(data) {
       $scope.enableEditForm = true;
-      $scope.update.name =  data.Name;
-      $scope.update.age = data.Age;
-      $scope.update.city = data.City;
-      $scope.update.id = data.ID;
+      $scope.user.name =  data.Name;
+      $scope.user.age = data.Age;
+      $scope.user.city = data.City;
+      $scope.user.id = data.ID;
     };
 
     //update user
@@ -68,30 +77,24 @@ function mainController($scope, $http) {
           age: data.age,
           city: data.city
         }
-        $http.put('/api/updateUser/' + $scope.update.id, dataInfo)
-            .success(function(data) {
+        $http.put('/api/updateUser/' + $scope.user.id, dataInfo)
+            .then(function(data) {
               $scope.getList();
               $scope.enableEditForm = false;
             })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
     };
 
     // delete user after checking it
     $scope.deleteUser = function(id) {
         if(id) {
           $http.delete('/api/deleteUser/' + id)
-              .success(function(data) {
+              .then(function(data) {
                   $scope.getList();
               })
-              .error(function(data) {
-                  console.log('Error: ' + data);
-              });
         } else {
           //To-do : move this msg to constant service
           console.log('id is missing');
         }
     };
 
-}
+}]);
