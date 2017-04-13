@@ -15,7 +15,7 @@
         PRIMARY KEY (ID)
       );
      ```
-## Folder structure:
+## Directory structure:
 
   - node-sql 
     - public
