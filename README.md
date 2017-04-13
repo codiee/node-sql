@@ -3,9 +3,9 @@
   
 ## Prerequisite Installation:
 
-  1. Install Node latest version [*Run node -v if version shown so node properly installed*]
-  2. Install mysql and create database and execute below sql query to create users table in your database
-
+  1. Install **Node** latest version [*Run node -v if version shown so node properly installed*]
+  2. Install **Mysql** and create database and execute below sql query to create users table in your database
+  
      ```
       CREATE TABLE Users(
         ID int NOT NULL AUTO_INCREMENT,
@@ -14,17 +14,17 @@
         City varchar(255),
         PRIMARY KEY (ID)
       );
-    ```
+     ```
 ## Folder structure:
 
   - node-sql 
-   - public
-     - config.js
-     - core.js
-     - index.html
-     - query.js
-   - app.js
-   - package.json
+    - public
+      - config.js
+      - core.js
+      - index.html
+      - query.js
+    - app.js
+    - package.json
 
 ## How to start:
 
