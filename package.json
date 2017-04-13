@@ -1,0 +1,29 @@
+{
+  "name": "nodesql",
+  "main": "app.js",
+  "description": "a really cool app",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "express": "^4.0.0",
+    "mysql": "^2.13.0"
+  },
+  "engines": {
+    "node": "6.9.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codiee/library.git"
+  },
+  "author": "anjali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codiee/library/issues"
+  },
+  "homepage": "https://github.com/codiee/library#readme"
+}
