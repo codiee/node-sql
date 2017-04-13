@@ -34,7 +34,8 @@
       npm install
       ```
   3. Configure database settings here
-     > *node-sql/public/config.js *
+     > node-sql/public/config.js
+     
   4. Run node server using below command
      ```
      node app.js
@@ -44,6 +45,7 @@
 ## End to End data flow:
 
   1. Once you open browser *index.html* file will be loaded as define in *app.js*
+  
       ```
        app.get('*', function(req, res) {
          // load the single view file (angular will handle the page changes on the front-end)
